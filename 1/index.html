@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="en">
+<!--
+Jason Killingsworth
+MIU Project 4 1110
+-->
+<head>
+	<meta charset="utf-8" />
+	<meta name="keywords" content="hockey,fantasy,ice,fantasy hockey,ice hockey,fantasy" />
+	<meta name="description" content="Ice Hockey Mobile App: Create your fantasy hockey team." />
+	<meta name="HandheldFriendly" content="True" />
+	<meta name="MobileOptimized" content="480" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="cleartype" content="on" />
+	<script type="text/javascript" src="inc/js/libs/modernizr.custom.min.js"></script>
+	<script type="text/javascript" src="inc/js/libs/jquery-1.6.4.min.js"></script>
+	<script type="text/javascript" src="inc/js/main.js"></script>
+	<script type="text/javascript" src="inc/js/jquery.mobileSlideshow.js"></script>
+	<script type="text/javascript" src="inc/js/json/players2.js"></script>
+	<link rel="stylesheet" href="inc/css/jquery.mobile-1.0rc1.min.css" />
+	<link rel="stylesheet" href="inc/css/main.css" />
+	<title>Fantasy Hockey</title>
+</head>
+<body>
+<div id="index" data-role="page">
+	<header>
+		<div data-role="header">
+			<h1>FANTASY HOCKEY 2011-2012</h1>
+		</div>
+	<div class="c">
+	<form method="POST">
+			<input name="q" placeholder="Search Available Players" type="search" data-inline="true" data-theme="e" />
+			<input type="submit" value="GO" id="submit" data-inline="true" data-theme="e" />
+		</form>
+	</div>
+	</header>
+	<div id="cta" data-role="content" class="c">
+				<div id="focus" onClick="location.href='#featuredPlayers'; return true;">
+		<script type="text/javascript">
+			$(document).ready(function()
+			{
+				$('#focus .item').mobileSlideshow(3000, 1500);  
+			});
+		 </script>
+		<div class="item">
+				<img src="img/ovechkin.jpg" />
+			</div>
+			<div class="item">
+				<img src="img/datsyuk.jpg" />
+			</div>
+			<div class="item">
+				<img src="img/lundqvist.jpg" />
+			</div>
+			<div class="item">
+				<img src="img/sedin.jpg" />
+			</div>
+		</div>
+		<div class="browseMain">
+		<h4>Browse Players By Position</h4>
+		<script type="text/javascript">popCategories("browse");</script>
+		</div>
+	</div>
+
+<script type="text/javascript">footer("fixed","e");</script>
+</div>
+
+
+	<div id="browseCenter" data-role="page" data-add-back-btn="true" onLoad="browsePlayers('Center');">
+		<div data-role="header" data-position="fixed">
+			<h1>Centers</h1>
+		</div>
+		<div data-role="content">
+			<ul data-role="listview" data-filter="true" data-filter-theme="e">
+			<li data-theme="e">Most Wanted Centers</li>
+				<script type="text/javascript">browseCenter();</script>
+			</ul>
+		</div>
+		<script type="text/javascript">footer("fixed","e");</script>
+	</div>
+	
+
+
+	<div id="browseLeftWing" data-role="page" data-add-back-btn="true">
+		<div data-role="header" data-position="fixed">
+			<h1>Left Wings</h1>
+		</div>
+		<div data-role="content">
+			<ul data-role="listview" data-filter="true" data-filter-theme="e">
+			<li data-theme="e">Most Wanted Left Wingers</li>
+				<script type="text/javascript">browseLeftWing()</script>
+			</ul>
+		</div>
+		<script type="text/javascript">footer("fixed","e");</script>
+	</div>
+
+
+
+	<div id="browseRightWing" data-role="page" data-add-back-btn="true">
+		<div data-role="header" data-position="fixed">
+			<h1>Right Wings</h1>
+		</div>
+		<div data-role="content">
+			<ul data-role="listview" data-filter="true" data-filter-theme="e">
+			<li data-theme="e">Most Wanted Right Wingers</li>
+				<script type="text/javascript">browseRightWing();</script>
+			</ul>
+		</div>
+		<script type="text/javascript">footer("fixed","e");</script>
+	</div>
+	
+
+
+	<div id="browseDefence" data-role="page" data-add-back-btn="true">
+		<div data-role="header" data-position="fixed">
+			<h1>Defence</h1>
+		</div>
+		<div data-role="content">
+			<ul data-role="listview" data-filter="true" data-filter-theme="e">
+			<li data-theme="e">Most Wanted Defencemen</li>
+				<script type="text/javascript">browseDefence();</script>
+			</ul>
+		</div>
+		<script type="text/javascript">footer("fixed","e");</script>
+	</div>
+
+
+
+	<div id="browseGoalie" data-role="page" data-add-back-btn="true">
+		<div data-role="header" data-position="fixed">
+			<h1>Goalies</h1>
+		</div>
+		<div data-role="content" data-theme="a">
+			<ul data-role="listview" data-filter="true" data-filter-theme="e">
+			<li data-theme="e">Most Wanted Goalies</li>
+				<script type="text/javascript">browseGoalies();</script>
+			</ul>
+		</div>
+		<script type="text/javascript">footer("fixed","e");</script>
+	</div>
+
+
+
+	<div id="removePlayer" data-role="page" data-add-back-btn="true">
+		<div data-role="header" data-position="fixed">
+			<h1>Remove Players</h1>
+		</div>
+		<div data-role="content">
+			<ul data-role="listview" data-filter="true" data-filter-theme="e">
+			<li data-theme="e">Choose A Player To Remove</li>
+				<script type="text/javascript">
+				removePlayerList();
+				</script>
+			</ul>
+		</div>
+		<script type="text/javascript">
+		footer("fixed","e");
+		</script>
+	</div>
+
+
+	
+
+	<div id="featuredPlayers" data-role="page" data-add-back-btn="true">
+		<div data-role="header" data-position="fixed">
+			<h1>Featured Players</h1>
+		</div>
+		<div data-role="content">
+			<ul data-role="listview" data-filter-theme="e">
+			<li data-role="list-divider" data-theme="e">Featured Centers</li>
+			<script type="text/javascript">featuredPlayers();</script>
+			</ul>
+		</div>
+		<script type="text/javascript">footer("fixed","e");</script>
+	</div>
+	
+	
+
+<div id="myTeam" data-role="page" data-add-back-btn="true">
+		<div data-role="header" data-position="fixed">
+			<h1>My Team</h1>
+		</div>
+		<div data-role="content">
+			<ul data-role="listview" data-filter-theme="e">
+			<li data-role="list-divider" data-theme="e">Your Team</li>
+				<script type="text/javascript">myTeam();</script>
+			</ul>
+		</div>
+		<script type="text/javascript">footer("fixed","e");</script>
+	</div>
+
+
+
+
+<div id="addPlayerForm" data-role="page" data-add-back-btn="true">
+	<div data-role="header" data-position="fixed">
+		<h1 id="pageTitleAddPlayer">Add Player</h1>
+	</div>
+	<form action="#myTeam" name="lsForm" onSubmit="validateForm();" method="POST">
+	<div data-role="content" data-theme="a">
+	<div class="fieldContainer">
+		<label for="formName" id="formName">First Name</label>
+		<input type="text" name="item" id="formFirstName" style="width:75%;" placeholder="Enter Players First Name Here"  class="clearable"/>
+		<span class="formHints">Enter the First name eg: &quot;John&quot;</span>
+		<label for="formName" id="lastName">Last Name</label>
+		<input type="text" name="item" id="formLastName" style="width:75%" placeholder="Enter Players Last Name Here"  class="clearable style1"/>
+		<span class="formHints">Enter the players Last name eg: &quot;Smith&quot;</span>
+	</div>
+	<div class="fieldContainer  fieldcontain">
+		<label for="formPosition">Position</label>
+		<br>
+		<script type="text/javascript">setFormPosition();</script>
+		<option value="C">Center</option>
+		<option value="LW">Left Wing</option>
+		<option value="RW">Right Wing</option>
+		<option value="D">Defence</option>
+		<option value="G">Goalie</option>
+		<!--<script type="text/javascript">popCategories("form");</script>-->
+		</select>
+		<span class="formHints">Your player will be assigned to this position.</span>
+	</div>
+	<div class="fieldContainer  fieldcontain">
+		<label for="formTeam">Team</label><br>
+		<select name="formTeam" id="formTeam">
+		<option value="Chicago">Chicago</option>
+		<option value="Columbus">Columbus</option>
+		<option value="Detroit">Detroit</option>
+		<option value="Nashville">Nashville</option>
+		<option value="St. Louis">St. Louis</option>
+		<option value="Calgary">Calgary</option>
+		<option value="Colorado">Colorado</option>
+		<option value="Edmonton">Edmonton</option>
+		<option value="Minnesota">Minnesota</option>
+		<option value="Vancouver">Vancouver</option>
+		<option value="Anaheim">Anaheim</option>
+		<option value="Dallas">Dallas</option>
+		<option value="Los Angeles">Los Angeles</option>
+		<option value="Phoenix">Phoenix</option>
+		<option value="San Jose">San Jose</option>
+		<option value="New Jersey">New Jersey</option>
+		<option value="New York Islanders">New York Islanders</option>
+		<option value="New York Rangers">New York Rangers</option>
+		<option value="Philadelphia">Philadelphia</option>
+		<option value="Pittsburgh">Pittsburgh</option>
+		<option value="Boston">Boston</option>
+		<option value="Buffalo">Buffalo</option>
+		<option value="Montreal">Montreal</option>
+		<option value="Ottawa">Ottawa</option>
+		<option value="Toronto">Toronto</option>
+		<option value="Carolina">Carolina</option>
+		<option value="Florida">Florida</option>
+		<option value="Tampa Bay">Tampa Bay</option>
+		<option value="Washington">Washington</option>
+		<option value="Winnipeg">Winnipeg</option>
+		<!--<script type="text/javascript">popCategories("form");</script>-->
+		</select>
+		<span class="formHints">Your player will be assigned to this team.</span>
+	</div>
+	<div class="fieldContainer c">
+		<label for="formMyRank">My Rank: </label><span id="output">250</span> / 500<br>
+		<script type="text/javascript">createRange();</script>
+		<!--<input type="range" name="formMyRank" id="formMyRank" min="1" max="500" step="1" value="250" />-->
+		<span class="formHints">This is your personal rank, it will not affect the original ranking.</span>
+	</div>			
+	<div class="fieldContainer">
+		<label for="formFav">Mark as Favorite?</label>
+		<input type="checkbox" name="formFav" id="formFav" />
+		<span class="formHints">Mark this player as a personal favorite.</span>
+	</div>
+	<div class="fieldContainer">
+		<label for="formNum" style="text-align:right;margin-top:8px;">Number</label>
+		<input type="number" name="formNum" id="formNum" />
+		<span class="formHints">This is the number on the players jersey.</span>
+	</div>
+	<div class="fieldContainer" id="togglePositionForward" style="display:block;">
+		<label for="newPLayerGoals" style="text-align:right;margin-top:8px;">G</label><input type="text" id="newPLayerGoals" />
+		<span class="formHints">Number of goals player scored last season. EG: 30</span>
+		<label for="newPLayerAssists" style="text-align:right;margin-top:8px;">A</label><input type="text" id="newPLayerAssists" />
+		<span class="formHints">Number of assists player scored last season. EG: 40</span>
+		<label for="newPLayerPlusMinus" style="text-align:right;margin-top:8px;">P/M</label><input type="text" id="newPLayerPlusMinus" />
+		<span class="formHints">Value of players plus/minus rating last season. EG -11</span>
+		<label for="newPLayerPim" style="text-align:right;margin-top:8px;">PIM</label><input type="text" id="newPLayerPim" />
+		<span class="formHints">Total penalty minutes player had last season. EG: 62</span>
+		<label for="newPLayerPpp" style="text-align:right;margin-top:8px;">PPP</label><input type="text" id="newPLayerPpp" />
+		<span class="formHints">Total powerplay points scored last season. EG: 38</span>
+		<label for="newPLayerSog" style="text-align:right;margin-top:8px;">SOG</label><input type="text" id="newPLayerSog" />
+		<span class="formHints">Total shots on goal from last season. EG: 101</span>
+	</div>
+	<div class="fieldContainer" id="togglePositionGoalie" style="display:none;">
+		<label for="newPLayerWins" style="text-align:right;margin-top:8px;">W</label><input type="text" id="newPLayerWins" />
+		<span class="formHints">Number of wins player accumulated last season. EG: 40</span>
+		<label for="newPLayerGaa" style="text-align:right;margin-top:8px;">GAA</label><input type="text" id="newPLayerGaa" />
+		<span class="formHints">Average goals per game allowed last season. EG: 2.18</span>
+		<label for="newPLayerSv" style="text-align:right;margin-top:8px;">SV%</label><input type="text" id="newPLayerSv" />
+		<span class="formHints">Percentage of saves against number of shots against last season. EG: 9.19</span>
+		<label for="newPLayerSo" style="text-align:right;margin-top:8px;">SO</label><input type="text" id="newPLayerSo" />
+		<span class="formHints">Total number of shutouts last season. EG: 10</span>
+	</div>
+		<div class="fieldContainer c">
+		<label for="date" class="purchaseBy">Sign By:</label>
+		<script type="text/javascript">setDate();</script>
+		</div>	
+	<div class="fieldContainer">
+		<label for="formNotes">Notes</label><br>
+		<textarea name="formNotes" id="formNotes" style="width:97%" placeholder="Enter any notes about this player here."></textarea>
+		<span class="formHints">eg: Player has been traded to better team.</span>
+	</div>
+	<input type="hidden" name="method" value="new" id="method" />
+	<script type="text/javascript">toggleAddPlayerButton();</script>
+	</form>
+</div>
+	<script type="text/javascript">
+	footer("fixed","e");
+</script>
+</div>
+
+
+<script type="text/javascript" src="inc/js/libs/jquery.mobile-1.0rc1.min.js"></script>
+</body>
+</html>
